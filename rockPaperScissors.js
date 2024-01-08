@@ -23,22 +23,26 @@ function getResults(playerChoice, computerChoice){
     else if(((playerChoice +1) % 3) == computerChoice){
         this._playerScore++;
         str = `Player Wins! ${Choices[playerChoice]} beats ${Choices[computerChoice]}`;
+        addScoreBlock(true);
     }
     else{
         this._computerScore++;
         str = `Computer Wins! ${Choices[computerChoice]} beats ${Choices[playerChoice]}`;
+        addScoreBlock(false);
     }
 
     if(this._playerScore == 5){
         str = "Congratulations! You've won the game! Select another choice to play again.";
         this._gameOver = true;
+        deleteAllScoreBlocks();
     }
     else if(this._computerScore == 5){
         str = "Bad Luck! You've lost the game...";
         this._gameOver = true;
+        deleteAllScoreBlocks();
     }
 
-    displayScores();
+    // displayScores();
     
     return str;
 }
@@ -66,13 +70,32 @@ function playRound(playerChoice, computerChoice){
     document.getElementById('inputField').value = "";
 }
 
-function displayScores(){
-    document.getElementById('playerScore').innerHTML = this._playerScore;
-    document.getElementById('computerScore').innerHTML = this._computerScore;
-}
+// function displayScores(){
+//     document.getElementById('playerScore').innerHTML = this._playerScore;
+//     document.getElementById('computerScore').innerHTML = this._computerScore;
+// }
 
 function reset(){
     this._gameOver = false;
     this._playerScore = 0;
     this._computerScore = 0;
+}
+
+function addScoreBlock(isPlayerScore){
+    const ID = isPlayerScore? 'playerScore' : 'computerScore';
+
+    const scoreBlock = document.createElement('div');
+    scoreBlock.classList.add('RPS_scoreBlock');
+
+    document.getElementById(ID).appendChild(scoreBlock);
+}
+
+function deleteAllScoreBlocks(){
+    const scoreBlocks = document.getElementsByClassName('RPS_scoreBlock');
+    const scoreBlocksLength = scoreBlocks.length;
+
+    for (let i = 0; i < scoreBlocksLength; i++) {
+        const element = scoreBlocks[0];
+        element.parentElement.removeChild(element);
+    }
 }

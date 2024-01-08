@@ -5,11 +5,27 @@ html, body {
 
 .RPS_root{
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     height: 100%;
+}
+
+.RPS_score{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: 500px;
+    width: 100px;
+    align-items: center;
+}
+
+.RPS_scoreBlock{
+    background-color: red;
+    height: 60px;
+    width: 60px;
+    border-radius: 5px;
 }
 
 .RPS_row{
