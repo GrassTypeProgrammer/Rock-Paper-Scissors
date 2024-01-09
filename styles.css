@@ -28,12 +28,19 @@ html, body {
     border-radius: 5px;
 }
 
+.RPS_textDisplay{
+    text-align: center;
+    margin-top: 180px;
+    height: 50px
+}
+
 .RPS_row{
     display: flex;
     flex-direction: row;
     justify-content: center;
     gap: 10px;
-    margin-bottom: 20px;
+    align-self: center;
+    margin-top: 100px;
 }
 
 .RPS_img{
@@ -52,4 +59,14 @@ html, body {
 
 .RPS_score{
     font-size: 40px;
+    flex: 1;
+}
+
+.RPS_gameContent{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: flex-start;
+
 }
