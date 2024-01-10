@@ -1,12 +1,6 @@
 <!-- TODO: Luke. 
-    //Done: step 1) finish the basic version of rock paper scissors here. Have a button for each option with a little image on each.
-            keep track of the score. 
-    step 2) carry on with the odin project. We come back to RPS.
-    step 3) When you come back to RPS, implement the alternative version. https://medium.com/game-design-fundamentals/rock-paper-scissors-modified-5da9ec3facf5
-            You can either replace it or have a button at the top to swap between versions. This should have a segmented bar 
-            on the  left and right to represent how many points you and the computer have. You get more for winning etc. 
-            It doesn't need to be too fancy, just implement that. You can come back and add more at a later date. 
-    step 4) Add more RPS variants. That you can swap between. There could be one where rocks/paper/and scissors fall from 
-            the top and you have to type the one that beats it to get rid of it. They speed up as time goes by; standard 
-            typing game.
+        1) Done The player's score should be blue, computer's red.
+        2) A line at the bottom of the score box to indicate when you'll win.
+        3) The RPS Icon buttons are replaced with a Play Again? button.
+        4) Tidy up. Remove all unused code, especially in js and css.
 -->

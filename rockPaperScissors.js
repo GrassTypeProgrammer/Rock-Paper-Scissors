@@ -67,7 +67,7 @@ function onClickImg(index){
 function playRound(playerChoice, computerChoice){
     this._result = getResults(playerChoice, computerChoice);
     document.getElementById('result').innerHTML = this._result;
-    document.getElementById('inputField').value = "";
+    // document.getElementById('inputField').value = "";
 }
 
 // function displayScores(){
@@ -86,6 +86,7 @@ function addScoreBlock(isPlayerScore){
 
     const scoreBlock = document.createElement('div');
     scoreBlock.classList.add('RPS_scoreBlock');
+    scoreBlock.classList.add(ID);
 
     document.getElementById(ID).appendChild(scoreBlock);
 }
