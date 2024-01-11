@@ -5,14 +5,18 @@ var _result = "No result yet";
 var _playerScore = 0;
 var _computerScore = 0;
 var _gameOver = false;
+var _icons;
+var _interactiveElements;
+var _restartBtn;
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
 }
 
 function getResults(playerChoice, computerChoice){
-    if(this._gameOver){
-        reset();
+    // TODO: Luke this is temporary. Setup should be called when html is loaded.
+    if(this._icons == null){
+        setup();
     }
     
     var str = '';
@@ -34,15 +38,14 @@ function getResults(playerChoice, computerChoice){
     if(this._playerScore == 5){
         str = "Congratulations! You've won the game! Select another choice to play again.";
         this._gameOver = true;
-        deleteAllScoreBlocks();
+        gameOver();
     }
     else if(this._computerScore == 5){
         str = "Bad Luck! You've lost the game...";
         this._gameOver = true;
-        deleteAllScoreBlocks();
+        gameOver();
     }
 
-    // displayScores();
     
     return str;
 }
@@ -67,18 +70,15 @@ function onClickImg(index){
 function playRound(playerChoice, computerChoice){
     this._result = getResults(playerChoice, computerChoice);
     document.getElementById('result').innerHTML = this._result;
-    // document.getElementById('inputField').value = "";
 }
 
-// function displayScores(){
-//     document.getElementById('playerScore').innerHTML = this._playerScore;
-//     document.getElementById('computerScore').innerHTML = this._computerScore;
-// }
-
 function reset(){
-    this._gameOver = false;
-    this._playerScore = 0;
-    this._computerScore = 0;
+    _gameOver = false;
+    _playerScore = 0;
+    _computerScore = 0;
+    _interactiveElements.removeChild(_restartBtn);
+    _interactiveElements.appendChild(_icons);
+    deleteAllScoreBlocks();
 }
 
 function addScoreBlock(isPlayerScore){
@@ -99,4 +99,19 @@ function deleteAllScoreBlocks(){
         const element = scoreBlocks[0];
         element.parentElement.removeChild(element);
     }
+}
+
+function gameOver(){
+    this._interactiveElements.removeChild(this._icons);
+    this._interactiveElements.appendChild(this._restartBtn);
+}
+
+function setup(){
+    this._icons = document.getElementById('icons');
+    this._interactiveElements = document.getElementById('interactiveElements');
+
+    this._restartBtn = document.createElement('button');
+    this._restartBtn.id = 'restartBtn';
+    this._restartBtn.textContent = 'Play Again';
+    this._restartBtn.addEventListener('click', this.reset);
 }
