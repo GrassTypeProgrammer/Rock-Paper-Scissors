@@ -14,11 +14,6 @@ function getRandomInt(max) {
 }
 
 function getResults(playerChoice, computerChoice){
-    // TODO: Luke this is temporary. Setup should be called when html is loaded.
-    if(this._icons == null){
-        setup();
-    }
-    
     var str = '';
     
     if(playerChoice == computerChoice){
@@ -46,7 +41,6 @@ function getResults(playerChoice, computerChoice){
         gameOver();
     }
 
-    
     return str;
 }
 
@@ -107,6 +101,7 @@ function gameOver(){
 }
 
 function setup(){
+    console.log('setup');
     this._icons = document.getElementById('icons');
     this._interactiveElements = document.getElementById('interactiveElements');
 
