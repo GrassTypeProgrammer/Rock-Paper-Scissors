@@ -1,16 +1,48 @@
 
 const Choices = ['scissors', 'paper', 'rock' ];
 
-var _result = "No result yet";
 var _playerScore = 0;
 var _computerScore = 0;
 var _gameOver = false;
 var _icons;
 var _interactiveElements;
 var _restartBtn;
+var _resultBox;
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+
+function setup(){
+    console.log('setup');
+    this._icons = document.getElementById('icons');
+    this._interactiveElements = document.getElementById('interactiveElements');
+    this._resultBox = document.getElementById('result');
+
+    this._restartBtn = document.createElement('button');
+    this._restartBtn.id = 'restartBtn';
+    this._restartBtn.textContent = 'Play Again';
+    this._restartBtn.addEventListener('click', this.reset);
+}
+
+function gameOver(){
+    this._interactiveElements.removeChild(this._icons);
+    this._interactiveElements.appendChild(this._restartBtn);
+}
+
+function reset(){
+    _gameOver = false;
+    _playerScore = 0;
+    _computerScore = 0;
+    _interactiveElements.removeChild(_restartBtn);
+    _interactiveElements.appendChild(_icons);
+    deleteAllScoreBlocks();
+    _resultBox.innerHTML = 'Select a weapon!';
+}
+
+function onClickImg(index){
+    playRound(index, getComputerChoice());
+}
+
+function playRound(playerChoice, computerChoice){
+    _resultBox.innerHTML = getResults(playerChoice, computerChoice);
 }
 
 function getResults(playerChoice, computerChoice){
@@ -44,35 +76,12 @@ function getResults(playerChoice, computerChoice){
     return str;
 }
 
-function getPlayerInput(){
-    var playerInput = document.getElementById('inputField').value;
-    return Choices.indexOf(playerInput.toLowerCase());
-}
-
-function onSelect(){
-    playRound(getPlayerInput(), getComputerChoice());
-}
-
 function getComputerChoice(){
     return getRandomInt(3);
 }
 
-function onClickImg(index){
-    playRound(index, getComputerChoice());
-}
-
-function playRound(playerChoice, computerChoice){
-    this._result = getResults(playerChoice, computerChoice);
-    document.getElementById('result').innerHTML = this._result;
-}
-
-function reset(){
-    _gameOver = false;
-    _playerScore = 0;
-    _computerScore = 0;
-    _interactiveElements.removeChild(_restartBtn);
-    _interactiveElements.appendChild(_icons);
-    deleteAllScoreBlocks();
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
 
 function addScoreBlock(isPlayerScore){
@@ -95,18 +104,3 @@ function deleteAllScoreBlocks(){
     }
 }
 
-function gameOver(){
-    this._interactiveElements.removeChild(this._icons);
-    this._interactiveElements.appendChild(this._restartBtn);
-}
-
-function setup(){
-    console.log('setup');
-    this._icons = document.getElementById('icons');
-    this._interactiveElements = document.getElementById('interactiveElements');
-
-    this._restartBtn = document.createElement('button');
-    this._restartBtn.id = 'restartBtn';
-    this._restartBtn.textContent = 'Play Again';
-    this._restartBtn.addEventListener('click', this.reset);
-}
