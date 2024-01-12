@@ -11,13 +11,13 @@ var _resultBox;
 
 
 function setup(){
-    console.log('setup');
     this._icons = document.getElementById('icons');
     this._interactiveElements = document.getElementById('interactiveElements');
     this._resultBox = document.getElementById('result');
 
     this._restartBtn = document.createElement('button');
     this._restartBtn.id = 'restartBtn';
+    this._restartBtn.classList.add('RPS_restartButton');
     this._restartBtn.textContent = 'Play Again';
     this._restartBtn.addEventListener('click', this.reset);
 }

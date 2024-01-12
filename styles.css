@@ -81,3 +81,9 @@ html, body {
     height: 100%;
     justify-content: flex-start;
 }
+
+.RPS_restartButton{
+    width: 140px;
+    height: 40px;
+    font-size: 18px;
+}
